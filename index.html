@@ -63,11 +63,15 @@
   /* ---------- Hero ---------- */
   .hero{min-height:100vh;display:flex;align-items:center;color:#fff;position:relative;overflow:hidden}
   .hero-bg{position:absolute;inset:0}
-  .hero-bg img{width:100%;height:100%;object-fit:cover;transform-origin:78% -5%;will-change:transform;animation:goji-sway 7s ease-in-out infinite,goji-gust 13s ease-in-out infinite}
-  /* 枸杞随风轻摆：以树枝上方为支点摆动，放大 8% 避免露出边缘 */
-  @keyframes goji-sway{0%,100%{transform:scale(1.08) rotate(-.9deg)}50%{transform:scale(1.08) rotate(.9deg)}}
-  @keyframes goji-gust{0%,100%{translate:0 0}30%{translate:-.6% .3%}60%{translate:.5% -.2%}}
-  @media(prefers-reduced-motion:reduce){.hero-bg img{animation:none}}
+  /* 舞台按 cover 规则铺满：宽 = max(容器宽, 容器高×4/3)，让果实图层与背景图始终逐像素对齐 */
+  .hero-bg{container-type:size}
+  .hero-stage{position:absolute;left:50%;top:50%;width:max(100cqw,calc(100cqh * 4 / 3));aspect-ratio:4/3;transform:translate(-50%,-50%)}
+  .hero-stage img{position:absolute;display:block;max-width:none}
+  .hero-stage>img:first-child{inset:0;width:100%;height:100%}
+  /* 每颗枸杞以果蒂为支点各自摆动，幅度、周期、相位都不同，像在向访客招手 */
+  .berry{transform-origin:var(--ox) var(--oy);will-change:transform;animation:berry-swing var(--dur,4s) ease-in-out var(--delay,0s) infinite}
+  @keyframes berry-swing{0%,100%{transform:rotate(calc(var(--amp,4deg) * -1))}50%{transform:rotate(var(--amp,4deg))}}
+  @media(prefers-reduced-motion:reduce){.berry{animation:none}}
   .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(51,18,15,.88) 0%,rgba(95,28,23,.62) 45%,rgba(120,45,32,.25) 100%)}
   .hero-inner{position:relative;z-index:2;padding:130px 0 90px;max-width:660px}
   .hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.8rem;letter-spacing:.2em;color:var(--gold-soft);text-transform:uppercase;margin-bottom:22px}
@@ -287,7 +291,23 @@
 
 <!-- ===== Hero ===== -->
 <header class="hero" id="home">
-  <div class="hero-bg"><img src="assets/hero.jpg" alt="宁夏中宁枸杞挂满枝头"></div>
+  <div class="hero-bg">
+    <div class="hero-stage">
+      <img src="assets/hero-bg.jpg" alt="宁夏中宁枸杞挂满枝头">
+      <img class="berry" src="assets/berries/A.png" alt="" aria-hidden="true" style="left:84.722%;top:11.481%;width:6.667%;height:11.481%;--ox:55.6%;--oy:12.9%;--dur:3.1s;--delay:0.0s;--amp:3.2deg">
+      <img class="berry" src="assets/berries/C.png" alt="" aria-hidden="true" style="left:76.389%;top:25.926%;width:6.667%;height:11.975%;--ox:41.7%;--oy:12.4%;--dur:3.47s;--delay:3.17s;--amp:4.1deg">
+      <img class="berry" src="assets/berries/D.png" alt="" aria-hidden="true" style="left:72.222%;top:45.062%;width:9.259%;height:15.309%;--ox:55.0%;--oy:12.1%;--dur:3.84s;--delay:2.34s;--amp:5.0deg">
+      <img class="berry" src="assets/berries/E.png" alt="" aria-hidden="true" style="left:63.426%;top:53.951%;width:6.204%;height:12.963%;--ox:55.2%;--oy:7.6%;--dur:4.21s;--delay:1.51s;--amp:5.9deg">
+      <img class="berry" src="assets/berries/F.png" alt="" aria-hidden="true" style="left:57.963%;top:50.864%;width:6.852%;height:17.284%;--ox:39.2%;--oy:8.6%;--dur:4.58s;--delay:0.68s;--amp:4.0deg">
+      <img class="berry" src="assets/berries/G.png" alt="" aria-hidden="true" style="left:52.778%;top:57.037%;width:8.241%;height:16.914%;--ox:78.7%;--oy:24.1%;--dur:3.25s;--delay:3.85s;--amp:4.9deg">
+      <img class="berry" src="assets/berries/I.png" alt="" aria-hidden="true" style="left:44.259%;top:57.16%;width:7.037%;height:12.84%;--ox:44.7%;--oy:14.4%;--dur:3.62s;--delay:3.02s;--amp:5.8deg">
+      <img class="berry" src="assets/berries/J.png" alt="" aria-hidden="true" style="left:43.241%;top:69.383%;width:8.426%;height:12.84%;--ox:45.1%;--oy:12.5%;--dur:3.99s;--delay:2.19s;--amp:3.9deg">
+      <img class="berry" src="assets/berries/K.png" alt="" aria-hidden="true" style="left:40.37%;top:67.654%;width:5.741%;height:11.728%;--ox:62.9%;--oy:12.6%;--dur:4.36s;--delay:1.36s;--amp:4.8deg">
+      <img class="berry" src="assets/berries/L.png" alt="" aria-hidden="true" style="left:25.0%;top:67.407%;width:6.389%;height:13.21%;--ox:43.5%;--oy:5.6%;--dur:4.73s;--delay:0.53s;--amp:5.7deg">
+      <img class="berry" src="assets/berries/M.png" alt="" aria-hidden="true" style="left:31.389%;top:70.617%;width:5.278%;height:13.827%;--ox:50.9%;--oy:10.7%;--dur:3.4s;--delay:3.7s;--amp:3.8deg">
+      <img class="berry" src="assets/berries/N.png" alt="" aria-hidden="true" style="left:27.963%;top:71.605%;width:5.093%;height:14.074%;--ox:60.0%;--oy:28.1%;--dur:3.77s;--delay:2.87s;--amp:4.7deg">
+    </div>
+  </div>
   <div class="wrap hero-inner">
     <div class="hero-eyebrow" data-i18n-en="From the Hometown of Chinese Goji &middot; Zhongning, Ningxia">源自中国枸杞之乡 · 宁夏中宁</div>
     <h1 data-i18n-en="Authentic Goji Berry<br><em>From a Single Berry to a Daily Cup</em>">道地好枸杞<br><em>从一颗果实到每日一杯</em></h1>
