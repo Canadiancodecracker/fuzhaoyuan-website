@@ -2,7 +2,8 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f8f3ea">
 <title>宁夏福兆源农业科技有限公司 · 福兆源枸杞世家</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='36' r='24' fill='%23A62C23'/%3E%3Cpath d='M32 12 C38 6 44 8 46 4 C40 10 36 10 32 12 Z' fill='%236E1D19'/%3E%3Ccircle cx='24' cy='28' r='5' fill='%23C4453A'/%3E%3Ccircle cx='41' cy='26' r='4' fill='%23C4453A'/%3E%3Ccircle cx='30' cy='46' r='6' fill='%23C4453A'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://miaoda.feishu.cn" crossorigin>
@@ -26,7 +27,7 @@
     --shadow:0 20px 50px -30px rgba(95,28,23,.45);
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-padding-top:76px}
   body{font-family:var(--sans);color:var(--ink);background:var(--cream);line-height:1.7;-webkit-font-smoothing:antialiased}
   img{display:block;max-width:100%}
   a{color:inherit;text-decoration:none}
@@ -61,7 +62,7 @@
   .nav.open .nav-toggle span:nth-child(3){top:21px;transform:rotate(-45deg)}
 
   /* ---------- Hero ---------- */
-  .hero{min-height:100vh;display:flex;align-items:center;color:#fff;position:relative;overflow:hidden}
+  .hero{min-height:100vh;min-height:100svh;display:flex;align-items:center;color:#fff;position:relative;overflow:hidden}
   .hero-bg{position:absolute;inset:0}
   /* 舞台按 cover 规则铺满：宽 = max(容器宽, 容器高×4/3)，让果实图层与背景图始终逐像素对齐 */
   .hero-bg{container-type:size}
@@ -73,7 +74,7 @@
   @keyframes berry-swing{0%,100%{transform:rotate(calc(var(--amp,4deg) * -1))}50%{transform:rotate(var(--amp,4deg))}}
   @media(prefers-reduced-motion:reduce){.berry{animation:none}}
   .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(51,18,15,.88) 0%,rgba(95,28,23,.62) 45%,rgba(120,45,32,.25) 100%)}
-  .hero-inner{position:relative;z-index:2;padding:130px 0 90px;max-width:660px}
+  .hero-inner{position:relative;z-index:2;padding-top:130px;padding-bottom:90px;max-width:660px}
   .hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.8rem;letter-spacing:.2em;color:var(--gold-soft);text-transform:uppercase;margin-bottom:22px}
   .hero-eyebrow::before{content:"";width:34px;height:1px;background:var(--gold-soft)}
   .hero h1{font-family:var(--serif);font-weight:900;font-size:clamp(2.3rem,5.2vw,4rem);line-height:1.22;letter-spacing:.01em;margin-bottom:8px}
@@ -221,6 +222,9 @@
   .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
   .reveal.visible{opacity:1;transform:none}
 
+  /* 触屏没有 hover，去掉抬起效果，避免点按后卡在抬起状态 */
+  @media(hover:none){.adv-card:hover{transform:none;background:rgba(255,255,255,.05)}.prod-card:hover{transform:none;box-shadow:none}.prod-card:hover .prod-img img{transform:none}}
+
   /* ---------- 响应式 ---------- */
   @media(max-width:1024px){
     .adv-grid{grid-template-columns:repeat(2,1fr)}
@@ -234,15 +238,49 @@
     .nav-toggle{display:block}
     .nav.open .nav-links{display:flex;position:fixed;top:76px;left:0;right:0;flex-direction:column;gap:0;background:var(--cream);border-bottom:1px solid var(--line);padding:10px 0}
     .nav.open .nav-links a{padding:15px 28px;border-bottom:1px solid var(--line);display:block}
-    .nav.open .nav-cta{display:inline-flex;margin:16px 28px}
     .about-grid,.brands-head,.quality-wrap,.contact-grid{grid-template-columns:1fr}
     .about-visual img{height:340px}
     .brands-visual img{height:240px}
     .about-badge{right:8px;bottom:8px}
   }
   @media(max-width:640px){
-    .hero-inner{padding:120px 0 70px}
-    .hero-stats{flex-wrap:wrap;gap:24px}
+    .hero-inner{padding-top:104px;padding-bottom:48px}
+    .hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:22px 16px;margin-top:36px;padding-top:24px}
+    .stat b{font-size:1.6rem}
+    .hero h1{font-size:clamp(1.7rem,8.2vw,2.3rem)}
+    .hero-lead{font-size:1rem}
+    .hero-bg::after{background:linear-gradient(180deg,rgba(51,18,15,.82) 0%,rgba(80,24,19,.7) 55%,rgba(95,28,23,.82) 100%)}
+    .hero-actions .btn{flex:1 1 auto;justify-content:center;min-height:48px}
+    .wrap{padding:0 20px}
+    .nav-inner{height:64px}
+    .nav.open .nav-links{top:64px}
+    html{scroll-padding-top:64px}
+    .brand-mark{width:34px;height:34px;flex-basis:34px}
+    .brand-name{font-size:1.02rem}
+    .brand-sub{display:none}
+    .nav-right{gap:8px}
+    .lang-btn{min-height:40px;padding:6px 14px}
+    .nav-toggle{width:48px;height:48px}
+    .nav.open .nav-links a{padding:16px 20px;font-size:1rem}
+    .about,.advantages,.products,.brands,.quality,.pipeline,.contact{padding:64px 0}
+    .sec-head{margin-bottom:36px}
+    .adv-card{padding:26px 22px}
+    .adv-num{margin-bottom:16px}
+    .brands-head{margin-bottom:40px;gap:28px}
+    .about-grid,.quality-wrap,.contact-grid{gap:36px}
+    .about-badge{padding:14px 18px}
+    .about-badge b{font-size:1.5rem}
+    .prod-meta{gap:10px}
+    .prod-meta span{font-size:.8rem}
+    .prod-meta button{min-height:40px;padding:8px 16px;flex:0 0 auto}
+    .contact-form{padding:26px 20px}
+    .field input,.field textarea,.field select{font-size:16px;min-height:48px}
+    .form-submit{min-height:50px}
+    .contact-info .ci a{word-break:break-all}
+    .foot-col a{padding:12px 0;margin-bottom:0}
+    .contact-info .ci a{display:inline-block;padding:10px 0}
+    .foot-bottom{flex-direction:column;align-items:flex-start}
+    footer{padding-bottom:calc(30px + env(safe-area-inset-bottom))}
     .adv-grid,.prod-grid{grid-template-columns:1fr}
     .brand-list{grid-template-columns:1fr}
     .cert-list,.about-points,.form-row{grid-template-columns:1fr}
@@ -336,7 +374,7 @@
     </div>
     <div class="about-grid">
       <div class="about-visual reveal">
-        <img src="assets/field.jpg" alt="枸杞种植园丰收景象">
+        <img loading="lazy" decoding="async" src="assets/field.jpg" alt="枸杞种植园丰收景象">
         <div class="about-badge"><b data-i18n-en="600+">600年</b><span data-i18n-en="years of goji cultivation heritage">枸杞栽培历史传承</span></div>
       </div>
       <div class="about-copy reveal">
@@ -415,7 +453,7 @@
       <div class="prod-card reveal">
         <div class="prod-img">
           <span class="prod-tag" data-i18n-en="Classic Dried">经典干果</span>
-          <img src="assets/dried.jpg" alt="枸杞干果">
+          <img loading="lazy" decoding="async" src="assets/dried.jpg" alt="枸杞干果">
         </div>
         <div class="prod-body">
           <h4 data-i18n-en="Dried Goji">枸杞干果</h4>
@@ -426,7 +464,7 @@
       <div class="prod-card reveal">
         <div class="prod-img">
           <span class="prod-tag gold" data-i18n-en="Freshly Pressed">鲜果鲜榨</span>
-          <img src="assets/juice.jpg" alt="有机枸杞原浆">
+          <img loading="lazy" decoding="async" src="assets/juice.jpg" alt="有机枸杞原浆">
         </div>
         <div class="prod-body">
           <h4 data-i18n-en="Organic Goji Puree">有机枸杞原浆</h4>
@@ -437,7 +475,7 @@
       <div class="prod-card reveal">
         <div class="prod-img">
           <span class="prod-tag" data-i18n-en="Everyday Tea">日常茶饮</span>
-          <img src="assets/tea.jpg" alt="枸杞芽茶">
+          <img loading="lazy" decoding="async" src="assets/tea.jpg" alt="枸杞芽茶">
         </div>
         <div class="prod-body">
           <h4 data-i18n-en="Goji Bud Tea">枸杞芽茶</h4>
@@ -448,7 +486,7 @@
       <div class="prod-card reveal">
         <div class="prod-img">
           <span class="prod-tag gold" data-i18n-en="Premium Gift">高端礼赠</span>
-          <img src="assets/gift.jpg" alt="中宁枸杞精品礼盒">
+          <img loading="lazy" decoding="async" src="assets/gift.jpg" alt="中宁枸杞精品礼盒">
         </div>
         <div class="prod-body">
           <h4 data-i18n-en="Zhongning Goji Gift Box">中宁枸杞礼盒</h4>
@@ -470,7 +508,7 @@
         <p data-i18n-en="Fuzhaoyuan stands on quality, Jin Wu Nian selects by tree age, and Qiu Zhuang Shijia carries on a family craft &mdash; together building a complete goji brand portfolio for different occasions.">福兆源以品质立身，金五年以树龄选材，邱庄世家传承世家工艺，共同构筑完整的枸杞品牌矩阵，满足不同场景的选购需求。</p>
       </div>
       <div class="brands-visual reveal">
-        <img src="assets/brandbox.jpg" alt="金五年有机枸杞原浆礼盒">
+        <img loading="lazy" decoding="async" src="assets/brandbox.jpg" alt="金五年有机枸杞原浆礼盒">
       </div>
     </div>
     <div class="brand-list">
@@ -535,7 +573,7 @@
         </div>
       </div>
       <div class="quality-visual reveal">
-        <img src="assets/juicebox.jpg" alt="金五年有机枸杞原浆产品">
+        <img loading="lazy" decoding="async" src="assets/juicebox.jpg" alt="金五年有机枸杞原浆产品">
       </div>
     </div>
   </div>
