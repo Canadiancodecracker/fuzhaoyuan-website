@@ -103,10 +103,10 @@
   .about{padding:110px 0}
   .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
   .about-visual{position:relative}
-  .about-visual img{width:100%;height:520px;object-fit:cover;border-radius:6px;box-shadow:var(--shadow)}
-  .about-badge{position:absolute;right:-14px;bottom:-20px;background:var(--red);color:#fff;padding:22px 26px;border-radius:6px;box-shadow:var(--shadow);text-align:center}
-  .about-badge b{font-family:var(--serif);font-size:2rem;font-weight:900;display:block;line-height:1}
-  .about-badge span{font-size:.76rem;letter-spacing:.12em;opacity:.9}
+  .about-frame{position:relative;height:520px;overflow:hidden;border-radius:6px;box-shadow:var(--shadow);container-type:size}
+  .field-stage{position:absolute;left:50%;top:50%;width:max(100cqw,calc(100cqh * 16 / 9));aspect-ratio:16/9;transform:translate(-50%,-50%)}
+  .field-stage img{position:absolute;display:block;max-width:none}
+  .field-stage>img:first-child{inset:0;width:100%;height:100%}
   .about-copy h3{font-family:var(--serif);font-size:1.7rem;font-weight:900;line-height:1.4;margin-bottom:20px}
   .about-copy h3 span{color:var(--red)}
   .about-copy p{color:var(--ink-soft);margin-bottom:18px;font-size:1rem}
@@ -239,9 +239,8 @@
     .nav.open .nav-links{display:flex;position:fixed;top:76px;left:0;right:0;flex-direction:column;gap:0;background:var(--cream);border-bottom:1px solid var(--line);padding:10px 0}
     .nav.open .nav-links a{padding:15px 28px;border-bottom:1px solid var(--line);display:block}
     .about-grid,.brands-head,.quality-wrap,.contact-grid{grid-template-columns:1fr}
-    .about-visual img{height:340px}
+    .about-frame{height:340px}
     .brands-visual img{height:240px}
-    .about-badge{right:8px;bottom:8px}
   }
   @media(max-width:640px){
     .hero-inner{padding-top:104px;padding-bottom:48px}
@@ -268,8 +267,6 @@
     .adv-num{margin-bottom:16px}
     .brands-head{margin-bottom:40px;gap:28px}
     .about-grid,.quality-wrap,.contact-grid{gap:36px}
-    .about-badge{padding:14px 18px}
-    .about-badge b{font-size:1.5rem}
     .prod-meta{gap:10px}
     .prod-meta span{font-size:.8rem}
     .prod-meta button{min-height:40px;padding:8px 16px;flex:0 0 auto}
@@ -374,8 +371,27 @@
     </div>
     <div class="about-grid">
       <div class="about-visual reveal">
-        <img loading="lazy" decoding="async" src="assets/field.jpg" alt="枸杞种植园丰收景象">
-        <div class="about-badge"><b data-i18n-en="600+">600年</b><span data-i18n-en="years of goji cultivation heritage">枸杞栽培历史传承</span></div>
+        <div class="about-frame">
+          <div class="field-stage">
+          <img loading="lazy" decoding="async" src="assets/field-bg.jpg" alt="枸杞种植园丰收景象">
+          <img class="berry" loading="lazy" decoding="async" src="assets/field-berries/a.png" alt="" aria-hidden="true" style="left:24.2%;top:12.356%;width:7.55%;height:15.822%;--ox:83.4%;--oy:14.6%;--dur:4.2s;--delay:0.0s;--amp:1.4deg">
+          <img class="berry" loading="lazy" decoding="async" src="assets/field-berries/b.png" alt="" aria-hidden="true" style="left:35.85%;top:20.978%;width:6.55%;height:20.8%;--ox:48.1%;--oy:13.7%;--dur:4.73s;--delay:4.83s;--amp:2.1deg">
+          <img class="berry" loading="lazy" decoding="async" src="assets/field-berries/c.png" alt="" aria-hidden="true" style="left:41.85%;top:21.867%;width:7.6%;height:23.022%;--ox:44.7%;--oy:4.6%;--dur:5.26s;--delay:3.66s;--amp:2.8deg">
+          <img class="berry" loading="lazy" decoding="async" src="assets/field-berries/d.png" alt="" aria-hidden="true" style="left:47.5%;top:26.933%;width:6.35%;height:21.511%;--ox:39.4%;--oy:23.6%;--dur:5.79s;--delay:2.49s;--amp:1.9deg">
+          <img class="berry" loading="lazy" decoding="async" src="assets/field-berries/e.png" alt="" aria-hidden="true" style="left:52.75%;top:26.489%;width:6.15%;height:21.333%;--ox:48.8%;--oy:15.4%;--dur:6.32s;--delay:1.32s;--amp:2.6deg">
+          <img class="berry" loading="lazy" decoding="async" src="assets/field-berries/f.png" alt="" aria-hidden="true" style="left:55.2%;top:35.467%;width:7.55%;height:22.844%;--ox:50.3%;--oy:10.1%;--dur:4.45s;--delay:0.15s;--amp:1.7deg">
+          <img class="berry" loading="lazy" decoding="async" src="assets/field-berries/g.png" alt="" aria-hidden="true" style="left:61.5%;top:43.644%;width:9.35%;height:22.489%;--ox:32.1%;--oy:21.3%;--dur:4.98s;--delay:4.98s;--amp:2.4deg">
+          <img class="berry" loading="lazy" decoding="async" src="assets/field-berries/h.png" alt="" aria-hidden="true" style="left:70.55%;top:43.556%;width:8.6%;height:24.711%;--ox:40.1%;--oy:12.6%;--dur:5.51s;--delay:3.81s;--amp:1.5deg">
+          <img class="berry" loading="lazy" decoding="async" src="assets/field-berries/i.png" alt="" aria-hidden="true" style="left:79.1%;top:52.267%;width:9.75%;height:22.4%;--ox:55.4%;--oy:10.7%;--dur:6.04s;--delay:2.64s;--amp:2.2deg">
+          <img class="berry" loading="lazy" decoding="async" src="assets/field-berries/k.png" alt="" aria-hidden="true" style="left:93.5%;top:72.8%;width:6.5%;height:27.2%;--ox:42.3%;--oy:11.8%;--dur:6.57s;--delay:1.47s;--amp:2.9deg">
+          <img class="berry" loading="lazy" decoding="async" src="assets/field-berries/l.png" alt="" aria-hidden="true" style="left:88.45%;top:76.356%;width:6.2%;height:17.689%;--ox:49.2%;--oy:13.1%;--dur:4.7s;--delay:0.3s;--amp:2.0deg">
+          <img class="berry" loading="lazy" decoding="async" src="assets/field-berries/m.png" alt="" aria-hidden="true" style="left:62.3%;top:72.089%;width:4.6%;height:13.244%;--ox:47.8%;--oy:16.1%;--dur:5.23s;--delay:5.13s;--amp:2.7deg">
+          <img class="berry" loading="lazy" decoding="async" src="assets/field-berries/n.png" alt="" aria-hidden="true" style="left:65.9%;top:68.267%;width:5.7%;height:16.8%;--ox:45.6%;--oy:14.3%;--dur:5.76s;--delay:3.96s;--amp:1.8deg">
+          <img class="berry" loading="lazy" decoding="async" src="assets/field-berries/o.png" alt="" aria-hidden="true" style="left:67.05%;top:74.667%;width:5.9%;height:16.444%;--ox:45.8%;--oy:29.7%;--dur:6.29s;--delay:2.79s;--amp:2.5deg">
+          <img class="berry" loading="lazy" decoding="async" src="assets/field-berries/p.png" alt="" aria-hidden="true" style="left:73.5%;top:84.0%;width:7.75%;height:15.111%;--ox:61.3%;--oy:20.6%;--dur:4.42s;--delay:1.62s;--amp:1.6deg">
+          <img class="berry" loading="lazy" decoding="async" src="assets/field-berries/q.png" alt="" aria-hidden="true" style="left:52.75%;top:63.111%;width:5.05%;height:10.4%;--ox:44.6%;--oy:12.8%;--dur:4.95s;--delay:0.45s;--amp:2.3deg">
+          </div>
+        </div>
       </div>
       <div class="about-copy reveal">
         <h3 data-i18n-en="The <span>Journey</span> of an Authentic Goji Berry">一颗道地好枸杞的<span>诞生之旅</span></h3>
