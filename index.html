@@ -880,11 +880,14 @@
   (function(){
     var imgs=[].slice.call(document.querySelectorAll('.about-strip figure img,.honors figure img'));
     var box=document.getElementById('lightbox'),big=document.getElementById('lbImg'),cap=document.getElementById('lbCap');
-    var idx=0,lastFocus=null,x0=null;
+    var idx=0,lastFocus=null,x0=null,loadId=0;
     function show(i){
       idx=(i+imgs.length)%imgs.length;
       var im=imgs[idx],fc=im.parentNode.querySelector('figcaption');
-      big.src=im.currentSrc||im.src; big.alt=im.alt;
+      // 先秒开缩略图，再换成 2 倍放大并锐化过的大图（加载完才替换，避免闪白）
+      var thumb=im.currentSrc||im.src, hd=thumb.replace('/gallery/','/gallery/hd/'), token=++loadId;
+      big.src=thumb; big.alt=im.alt;
+      var pre=new Image(); pre.onload=function(){if(token===loadId)big.src=hd;}; pre.src=hd;
       cap.textContent=fc?fc.textContent:im.alt;
     }
     function open(i){
